@@ -1,14 +1,15 @@
+<% content_for :title, @user.user_name %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User name:</strong>
+  <strong><%= t(".user_name") %></strong>
   <%= @user.user_name %>
 </p>
 
 <p>
-  <strong>API key:</strong>
+  <strong><%= t(".api_key") %></strong>
   <%= @user.api_key %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to t("users.edit_user"), edit_user_path(@user) %> |
+<%= link_to t("users.log_out"), logout_path, method: :delete %>

@@ -1,0 +1,17 @@
+<% url = "https://github.com/acidhelm/kq_scene_scoring_server/blob/master/INSTALL.md" %>
+<% content_for :title, t(".page_title") %>
+<p id="notice"><%= notice %></p>
+<p><%= t ".account_setup_instructions_html", url: url %></p>
+<%= form_for(:session, url: login_path) do |f| %>
+  <div class="field">
+    <%= f.label :user_name, t(".user_name_html"), for: :user_name, accesskey: t(".user_name_accesskey") %>
+    <%= f.text_field :user_name, id: :user_name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :password, t(".password_html"), for: :password, accesskey: t(".password_accesskey") %>
+    <%= f.password_field :password, id: :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit t(".log_in_button") %>
+  </div>
+<% end %>
