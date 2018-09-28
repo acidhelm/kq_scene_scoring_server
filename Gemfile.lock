@@ -41,6 +41,9 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    attr_encrypted (3.1.0)
+      encryptor (~> 3.0.0)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -68,6 +71,7 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
+    encryptor (3.0.0)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -199,6 +203,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  attr_encrypted
+  bcrypt
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
