@@ -11,5 +11,9 @@
   <%= @user.api_key %>
 </p>
 
+<p><%= link_to t("users.view_tournaments"), user_tournaments_path(@user) %></p>
+
+<p>
 <%= link_to t("users.edit_user"), edit_user_path(@user) %> |
 <%= link_to t("users.log_out"), logout_path, method: :delete %>
+</p>
