@@ -82,6 +82,20 @@
                 page_title: "Editing %{tournament_name}",
                 page_header: "Editing %{tournament_name}"
             },
+            form: {
+                errors_list_header: {
+                    one: "1 error prevented this tournament from being saved:",
+                    other: "%{count} errors prevented this tournament from being saved:"
+                },
+                title_html: "<u>T</u>itle:",
+                slug_html: "<u>S</u>lug:",
+                subdomain_html: "S<u>u</u>bdomain:",
+                complete_html: "<u>C</u>omplete?",
+                title_accesskey: "t",
+                slug_accesskey: "s",
+                subdomain_accesskey: "u",
+                complete_accesskey: "c"
+            },
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
             tournament_list: "Back to the tournament list"

@@ -1,33 +1,36 @@
 <%= form_with(model: tournament, local: true, url: [tournament.user, tournament]) do |form| %>
   <% if tournament.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
-
-      <ul>
+    <h2><%= t(".errors_list_header", count: tournament.errors.count) %></h2>
+    <ul>
       <% tournament.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
+    </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :tournament_title %>
+    <%= form.label :title, t(".title_html"), for: :tournament_title,
+        accesskey: t(".title_accesskey") %>
+    <%= form.text_field :title, id: :tournament_title, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= form.label :slug %>
+    <%= form.label :slug, t(".slug_html"), for: :tournament_slug,
+        accesskey: t(".slug_accesskey") %>
     <%= form.text_field :slug, id: :tournament_slug %>
   </div>
 
   <div class="field">
-    <%= form.label :subdomain %>
+    <%= form.label :subdomain, t(".subdomain_html"), for: :tournament_subdomain,
+        accesskey: t(".subdomain_accesskey") %>
     <%= form.text_field :subdomain, id: :tournament_subdomain %>
   </div>
 
   <div class="field">
-    <%= form.label :complete %>
+    <%= form.label :complete, t(".complete_html"), for: :tournament_complete,
+        accesskey: t(".complete_accesskey") %>
     <%= form.check_box :complete, id: :tournament_complete %>
   </div>
 
