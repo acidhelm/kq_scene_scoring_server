@@ -1,29 +1,25 @@
+<% content_for :title, @tournament.title %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @tournament.title %>
-</p>
+<h1><%= @tournament.title %></h1>
 
 <p>
-  <strong>Slug:</strong>
+  <strong><%= t(".slug") %></strong>
   <%= @tournament.slug %>
 </p>
 
 <p>
-  <strong>Subdomain:</strong>
+  <strong><%= t(".subdomain") %></strong>
   <%= @tournament.subdomain %>
 </p>
 
 <p>
-  <strong>Complete:</strong>
+  <strong><%= t(".complete") %></strong>
   <%= @tournament.complete %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @tournament.user.user_name %>
+<%= link_to t("tournaments.edit_tournament"), [ :edit, @tournament.user, @tournament ] %> |
+<%= link_to t("tournaments.tournament_list"), user_tournaments_path %> |
+<%= link_to t("log_out_link"), logout_path, method: :delete %>
 </p>
-
-<%= link_to 'Edit', edit_user_tournament_path(@tournament) %> |
-<%= link_to 'Back', user_tournaments_path %>

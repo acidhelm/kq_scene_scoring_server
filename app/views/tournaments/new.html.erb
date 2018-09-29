@@ -1,5 +1,9 @@
-<h1>New Tournament</h1>
+<% content_for :title, t(".page_title") %>
+<h1><%= t(".page_header") %></h1>
 
-<%= render 'form', tournament: @tournament %>
+<%= render "form", tournament: @tournament %>
 
-<%= link_to 'Back', user_tournaments_path %>
+<p>
+<%= link_to t("tournaments.tournament_list"), user_tournaments_path %> |
+<%= link_to t("log_out_link"), logout_path, method: :delete %>
+</p>

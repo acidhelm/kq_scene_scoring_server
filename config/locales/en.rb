@@ -3,6 +3,7 @@
         browser_title: "%{title} - KQ Scene Scores",
         browser_title_view: "Viewing %{title}",
         cancel_link: "Cancel",
+        log_out_link: "Log out",
         errors: {
             login_required: "You must log in.",
             page_access_denied: "You cannot access that page.",
@@ -51,11 +52,22 @@
                 confirm_password_accesskey: "c"
             },
             view_tournaments: "View this user's tournaments",
-            edit_user: "Edit this user's settings",
-            log_out: "Log out"
+            edit_user: "Edit this user's settings"
         },
         tournaments: {
-            view_user: "View this user's info"
+            show: {
+                title: "Title:",
+                slug: "Slug:",
+                subdomain: "Subdomain:",
+                complete: "Complete?"
+            },
+            new: {
+                page_title: "Calculate scores for a tournament",
+                page_header: "Calculate scores for a Challonge tournament"
+            },
+            view_user: "View this user's info",
+            edit_tournament: "Edit this tournament's settings",
+            tournament_list: "Back to the tournament list"
         }
     }
 }
