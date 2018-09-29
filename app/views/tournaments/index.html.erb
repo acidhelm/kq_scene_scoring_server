@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Tournaments</h1>
-
+<p>
 <table>
   <thead>
     <tr>
@@ -29,7 +28,10 @@
     <% end %>
   </tbody>
 </table>
+</p>
 
-<br>
-
-<%= link_to 'New Tournament', new_user_tournament_path %>
+<p>
+<%= link_to 'New Tournament', new_user_tournament_path %> |
+<%= link_to t("tournaments.view_user"), user_path(@user) %> |
+<%= link_to t("users.log_out"), logout_path, method: :delete %>
+</p>

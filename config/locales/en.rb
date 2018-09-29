@@ -53,6 +53,9 @@
             view_tournaments: "View this user's tournaments",
             edit_user: "Edit this user's settings",
             log_out: "Log out"
+        },
+        tournaments: {
+            view_user: "View this user's info"
         }
     }
 }
