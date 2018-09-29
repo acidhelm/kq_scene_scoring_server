@@ -1,6 +1,9 @@
-<h1>Editing Tournament</h1>
+<% content_for :title, t(".page_title", tournament_name: @tournament.title) %>
+<h1><%= t(".page_header", tournament_name: @tournament.title) %></h1>
 
-<%= render 'form', tournament: @tournament %>
+<%= render "form", tournament: @tournament %>
 
-<%= link_to 'Show', [@tournament.user, @tournament] %> |
-<%= link_to 'Back', user_tournaments_path %>
+<p>
+<%= link_to t("cancel_link"), :back %> |
+<%= link_to t("log_out_link"), logout_path, method: :delete %>
+</p>

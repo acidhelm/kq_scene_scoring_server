@@ -78,6 +78,10 @@
                 edit_link: "Edit",
                 delete_link: "Delete"
             },
+            edit: {
+                page_title: "Editing %{tournament_name}",
+                page_header: "Editing %{tournament_name}"
+            },
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
             tournament_list: "Back to the tournament list"
