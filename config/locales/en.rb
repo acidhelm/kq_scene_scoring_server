@@ -65,6 +65,19 @@
                 page_title: "Calculate scores for a tournament",
                 page_header: "Calculate scores for a Challonge tournament"
             },
+            index: {
+                page_title: "Tournaments owned by %{user_name}",
+                page_header: "Tournaments owned by %{user_name}",
+                title: "Title",
+                slug: "Slug",
+                subdomain: "Subdomain",
+                complete: "Complete?",
+                actions: "Actions",
+                new_tournament: "Watch a new tournament",
+                show_link: "Show",
+                edit_link: "Edit",
+                delete_link: "Delete"
+            },
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
             tournament_list: "Back to the tournament list"
