@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tournament.title %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @tournament.slug %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @tournament.subdomain %>
+</p>
+
+<p>
+  <strong>Complete:</strong>
+  <%= @tournament.complete %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tournament.user.user_name %>
+</p>
+
+<%= link_to 'Edit', edit_user_tournament_path(@tournament) %> |
+<%= link_to 'Back', user_tournaments_path %>

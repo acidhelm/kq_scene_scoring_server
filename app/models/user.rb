@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-    # has_many :tournaments, dependent: :destroy
+    has_many :tournaments, dependent: :destroy
 
     validates :user_name, presence: true, uniqueness: { case_sensitive: false }
     validates :api_key, presence: true
