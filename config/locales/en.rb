@@ -31,10 +31,6 @@
             }
         },
         users: {
-            show: {
-                user_name: "User name:",
-                api_key: "API key:"
-            },
             edit: {
                 page_title: "Edit settings for %{user_name}",
                 page_header: "Edit settings for %{user_name}"
@@ -51,33 +47,14 @@
                 password_accesskey: "p",
                 confirm_password_accesskey: "c"
             },
+            show: {
+                user_name: "User name:",
+                api_key: "API key:"
+            },
             view_tournaments: "View this user's tournaments",
             edit_user: "Edit this user's settings"
         },
         tournaments: {
-            show: {
-                title: "Title:",
-                slug: "Slug:",
-                subdomain: "Subdomain:",
-                complete: "Complete?"
-            },
-            new: {
-                page_title: "Calculate scores for a tournament",
-                page_header: "Calculate scores for a Challonge tournament"
-            },
-            index: {
-                page_title: "Tournaments owned by %{user_name}",
-                page_header: "Tournaments owned by %{user_name}",
-                title: "Title",
-                slug: "Slug",
-                subdomain: "Subdomain",
-                complete: "Complete?",
-                actions: "Actions",
-                new_tournament: "Watch a new tournament",
-                show_link: "Show",
-                edit_link: "Edit",
-                delete_link: "Delete"
-            },
             edit: {
                 page_title: "Editing %{tournament_name}",
                 page_header: "Editing %{tournament_name}"
@@ -95,6 +72,29 @@
                 slug_accesskey: "s",
                 subdomain_accesskey: "u",
                 complete_accesskey: "c"
+            },
+            index: {
+                page_title: "Tournaments owned by %{user_name}",
+                page_header: "Tournaments owned by %{user_name}",
+                title: "Title",
+                slug: "Slug",
+                subdomain: "Subdomain",
+                complete: "Complete?",
+                actions: "Actions",
+                new_tournament: "Watch a new tournament",
+                show_link: "Show",
+                edit_link: "Edit",
+                delete_link: "Delete"
+            },
+            new: {
+                page_title: "Calculate scores for a tournament",
+                page_header: "Calculate scores for a Challonge tournament"
+            },
+            show: {
+                title: "Title:",
+                slug: "Slug:",
+                subdomain: "Subdomain:",
+                complete: "Complete?"
             },
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
