@@ -32,6 +32,6 @@
 
 <p>
 <%= link_to t(".new_tournament"), new_user_tournament_path %> |
-<%= link_to t("tournaments.view_user"), user_path(@user) %> |
+<%= link_to t("tournaments.view_user"), @user %> |
 <%= link_to t("users.log_out"), logout_path, method: :delete %>
 </p>

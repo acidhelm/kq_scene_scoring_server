@@ -19,7 +19,7 @@
 </p>
 
 <p>
-<%= link_to t("tournaments.edit_tournament"), [ :edit, @tournament.user, @tournament ] %> |
+<%= link_to t("tournaments.edit_tournament"), [:edit, @tournament.user, @tournament] %> |
 <%= link_to t("tournaments.tournament_list"), user_tournaments_path %> |
 <%= link_to t("log_out_link"), logout_path, method: :delete %>
 </p>
