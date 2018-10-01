@@ -98,7 +98,7 @@
                 slug: "Slug:",
                 subdomain: "Subdomain:",
                 complete: "Complete?",
-                update_now: "Update now"
+                calculate_now: "Calculate scores now"
             },
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
