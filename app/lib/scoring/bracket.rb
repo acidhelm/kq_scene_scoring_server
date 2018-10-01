@@ -5,21 +5,19 @@ module Scoring
 class Bracket
     attr_reader :players, :config
 
-    def initialize(slug, options)
-        @slug = slug
-        @api_key = options.api_key
-        @use_cache = options.use_cache
-        @update_cache = options.update_cache
+    def initialize(id:, api_key:)
+        @id = id
+        @api_key = api_key
         @loaded = false
     end
 
     # Returns a boolean indicating whether the bracket was loaded.
     def load
-        url = "https://api.challonge.com/v1/tournaments/#{@slug}.json"
+        url = "https://api.challonge.com/v1/tournaments/#{@id}.json"
         params = { include_matches: 1, include_participants: 1 }
 
         begin
-            response = send_get_request(url, "#{@slug}_tournament.json", params)
+            response = send_get_request(url, params)
         rescue RestClient::NotFound
             # Bail out if we got a 404 error.  The bracket doesn't exist on
             # Challonge right now, but it might be created in the future.
@@ -35,7 +33,7 @@ class Bracket
         # organizer set the `next_bracket` value to a bracket that has been
         # created on Challonge, but which will be started in the future.  For
         # example, the organizer can create a wild card bracket and a finals
-        # bracket, and set `next_bracket` in the wild card bracket to the slug
+        # bracket, and set `next_bracket` in the wild card bracket to the ID
         # of the finals bracket before the wild card bracket has finished.
         if @challonge_bracket.started_at.nil?
             puts "The bracket has not been started yet."
@@ -79,10 +77,10 @@ class Bracket
         raise "Multiple matches have one attachment" if first_match.size > 1
 
         # Read the options from the config file that's attached to that match.
-        url = "https://api.challonge.com/v1/tournaments/#{@slug}/matches/" \
+        url = "https://api.challonge.com/v1/tournaments/#{@id}/matches/" \
                 "#{first_match[0][:match][:id]}/attachments.json"
 
-        attachment_list = send_get_request(url, "#{@slug}_attachments.json")
+        attachment_list = send_get_request(url)
         asset_url = attachment_list[0][:match_attachment][:asset_url]
 
         raise "Couldn't find the config file attachment" if asset_url.nil?
@@ -95,7 +93,7 @@ class Bracket
 
         puts "Reading the config file from #{uri}"
 
-        config = send_get_request(uri.to_s, "#{@slug}_config_file.json")
+        config = send_get_request(uri.to_s)
 
         %i(base_point_value max_players_to_count match_values).each do |key|
             raise "The config file is missing \"#{key}\"" unless config.key?(key)
@@ -278,21 +276,11 @@ class Bracket
 
     # Sends a GET request to `url`, treats the returned data as JSON, parses it
     # into an object, and returns that object.
-    # If `cache_file` exists and `USE_CACHE` is true, then `cache_file` will be
-    # read instead.
-    def send_get_request(url, cache_file, params = {})
-        cached_response_file = "cache_#{cache_file}"
+    def send_get_request(url, params = {})
         params[:api_key] = @api_key
+        resp = RestClient.get(url, params: params)
 
-        if @use_cache && File.exist?(cached_response_file)
-            puts "Using the cached response from #{cached_response_file}"
-            JSON.parse(IO.read(cached_response_file), symbolize_names: true)
-        else
-            resp = RestClient.get(url, params: params)
-            IO.write(cached_response_file, resp) if @update_cache
-
-            JSON.parse(resp, symbolize_names: true)
-        end
+        JSON.parse(resp, symbolize_names: true)
     end
 end
 
