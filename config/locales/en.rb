@@ -14,7 +14,10 @@
         notices: {
             user_updated: "The user was updated.",
             auth_error: "Authentication error. Check that your Challonge user name" \
-                          " and API key are correct."
+                          " and API key are correct.",
+            tournament_created: "The tournament was created.",
+            tournament_updated: "The tournament was updated.",
+            tournament_deleted: "The tournament was deleted."
         },
         sessions: {
             new: {

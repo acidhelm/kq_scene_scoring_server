@@ -26,7 +26,8 @@ class TournamentsController < ApplicationController
         @tournament = @user.tournaments.new(tournament_params)
 
         if @tournament.save
-            redirect_to user_tournament_path(@user, @tournament), notice: 'The tournament was successfully created.'
+            redirect_to user_tournament_path(@user, @tournament),
+                        notice: I18n.t("notices.tournament_created")
         else
             render :new
         end
@@ -34,7 +35,8 @@ class TournamentsController < ApplicationController
 
     def update
         if @tournament.update(tournament_params)
-            redirect_to user_tournament_path(@user, @tournament), notice: 'The tournament was successfully updated.'
+            redirect_to user_tournament_path(@user, @tournament),
+                        notice: I18n.t("notices.tournament_updated")
         else
             render :edit
         end
@@ -61,7 +63,7 @@ class TournamentsController < ApplicationController
 
     def destroy
         @tournament.destroy
-        redirect_to({ action: "index" }, notice: 'The tournament was successfully destroyed.')
+        redirect_to({ action: "index" }, notice: I18n.t("notices.tournament_deleted"))
     end
 
     private
