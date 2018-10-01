@@ -5,23 +5,23 @@ module Scoring
 class Tournament
     attr_reader :scene_scores
 
-    def initialize(options)
+    def initialize(id:, api_key:)
         @brackets = []
         @scene_scores = []
-        @options = options
+        @id = id
+        @api_key = api_key
     end
 
-    # Reads the Challonge bracket with the slug that was passed in the options
-    # struct to the constructor, and fills in all the data structures that
-    # represent that bracket.  Returns true if at least one bracket was loaded,
-    # and false otherwise.
+    # Reads the Challonge bracket with the ID that was passed to the constructor,
+    # and fills in all the data structures that represent that bracket.
+    # Returns true if at least one bracket was loaded, and false otherwise.
     def load
-        slug = @options.tournament_name
+        tournament_id = @id
 
-        while slug
-            puts "Reading the bracket \"#{slug}\""
+        while tournament_id
+            puts "Reading the bracket \"#{tournament_id}\""
 
-            bracket = Bracket.new(slug, @options)
+            bracket = Bracket.new(id: tournament_id, api_key: @api_key)
             break if !bracket.load
 
             @brackets << bracket
@@ -42,7 +42,7 @@ class Tournament
 
             puts scene_list
 
-            slug = bracket.config.next_bracket
+            tournament_id = bracket.config.next_bracket
         end
 
         return false if @brackets.empty?
