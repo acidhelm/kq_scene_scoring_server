@@ -21,7 +21,7 @@ class Bracket
         rescue RestClient::NotFound
             # Bail out if we got a 404 error.  The bracket doesn't exist on
             # Challonge right now, but it might be created in the future.
-            puts "Warning: The bracket does not exist."
+            Rails.logger.warn "The bracket does not exist."
             return false
         end
 
@@ -36,7 +36,7 @@ class Bracket
         # bracket, and set `next_bracket` in the wild card bracket to the ID
         # of the finals bracket before the wild card bracket has finished.
         if @challonge_bracket.started_at.nil?
-            puts "The bracket has not been started yet."
+            Rails.logger.warn "The bracket has not been started yet."
             return false
         end
 
@@ -91,7 +91,7 @@ class Bracket
         # instead start with "//".  Default to HTTPS.
         uri.scheme ||= "https"
 
-        puts "Reading the config file from #{uri}"
+        Rails.logger.debug "Reading the config file from #{uri}"
 
         config = send_get_request(uri.to_s)
 
@@ -109,8 +109,8 @@ class Bracket
             @teams << Team.new(team[:participant])
         end
 
-        puts "#{@teams.size} teams are in the bracket: " +
-               @teams.sort_by(&:name).map { |t| %("#{t.name}") }.join(", ")
+        Rails.logger.info "#{@teams.size} teams are in the bracket: " +
+                          @teams.sort_by(&:name).map { |t| %("#{t.name}") }.join(", ")
 
         # Check that all of the teams in the bracket are also in the config file.
         missing_teams = []
@@ -174,7 +174,7 @@ class Bracket
             # isn't in the bracket.  We allow this so that multiple brackets can
             # use the same master team list during a tournament.
             if team_obj.nil?
-                puts "Skipping a team that isn't in the bracket: #{team[:name]}"
+                Rails.logger.info "Skipping a team that isn't in the bracket: #{team[:name]}"
                 next
             end
 
@@ -184,8 +184,8 @@ class Bracket
                 @players[team_obj.id] << Player.new(player)
             end
 
-            puts "#{team[:name]} (ID #{team_obj.id}) has: " +
-                 @players[team_obj.id].map { |p| "#{p.name} (#{p.scene})" }.join(", ")
+            Rails.logger.info "#{team[:name]} (ID #{team_obj.id}) has: " +
+                              @players[team_obj.id].map { |p| "#{p.name} (#{p.scene})" }.join(", ")
         end
 
         # Bail out if any team doesn't have exactly 5 players.
@@ -219,12 +219,12 @@ class Bracket
         @teams.each do |team|
             matches_with_team = @matches.select { |match| match.has_team?(team.id) }
 
-            puts "Team #{team.name} was in #{matches_with_team.size} matches"
+            Rails.logger.info "Team #{team.name} was in #{matches_with_team.size} matches"
 
             points_earned = matches_with_team.max_by(&:points).points
 
-            puts "The largest point value of those matches is #{points_earned}" \
-                   "#{" + #{base_point_value} base" if base_point_value > 0}"
+            Rails.logger.info "The largest point value of those matches is #{points_earned}" \
+                              "#{" + #{base_point_value} base" if base_point_value > 0}"
 
             team.points = points_earned + base_point_value
         end
@@ -232,11 +232,12 @@ class Bracket
 
     # Calculates how many points each player has earned in the tournament.
     def calculate_player_points
-        # Sort the teams by points in descending order.  This way, the output will
-        # follow the teams' finishing order, which will be easier to read.
+        # Iterate over the teams in descending order of their scores.  This way,
+        # the debug output will follow the teams' finishing order, which will be
+        # easier to read.
         @teams.sort_by(&:points).reverse_each do |team|
-            puts "Awarding #{team.points} points to #{team.name}: " +
-                 @players[team.id].map(&:to_s).join(", ")
+            Rails.logger.info "Awarding #{team.points} points to #{team.name}: " +
+                              @players[team.id].map(&:to_s).join(", ")
 
             @players[team.id].each do |player|
                 player.points = team.points
@@ -266,9 +267,9 @@ class Bracket
             points_earned = final_rank_points[team.final_rank].sum /
                               final_rank_points[team.final_rank].size
 
-            puts "#{team.name} finished in position #{team.final_rank} and gets" \
-                   " #{points_earned} points" \
-                   "#{" + #{base_point_value} base" if base_point_value > 0}"
+            Rails.logger.info "#{team.name} finished in position #{team.final_rank}" \
+                              " and gets #{points_earned} points" \
+                              "#{" + #{base_point_value} base" if base_point_value > 0}"
 
             team.points = points_earned + base_point_value
         end

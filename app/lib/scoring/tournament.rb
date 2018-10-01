@@ -19,7 +19,7 @@ class Tournament
         tournament_id = @id
 
         while tournament_id
-            puts "Reading the bracket \"#{tournament_id}\""
+            Rails.logger.debug "Reading the bracket \"#{tournament_id}\""
 
             bracket = Bracket.new(id: tournament_id, api_key: @api_key)
             break if !bracket.load
@@ -40,7 +40,7 @@ class Tournament
                   players.map(&:name).join(", ")
             end
 
-            puts scene_list
+            Rails.logger.info scene_list.join("\n")
 
             tournament_id = bracket.config.next_bracket
         end
@@ -104,8 +104,8 @@ class Tournament
             if scores.size > max_players_to_count
                 dropped = scores.slice!(max_players_to_count..-1)
 
-                puts "Dropping the #{dropped.size} lowest scores from #{scene}:" +
-                     dropped.join(", ")
+                Rails.logger.info "Dropping the #{dropped.size} lowest scores from #{scene}:" +
+                                  dropped.join(", ")
             end
 
             # Add up the scores for this scene.
