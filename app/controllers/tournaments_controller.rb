@@ -40,6 +40,25 @@ class TournamentsController < ApplicationController
         end
     end
 
+    def refresh
+        subdomain = @tournament.subdomain
+        tournament_name = @tournament.slug
+        tournament_name = "#{subdomain}-#{tournament_name}" if subdomain.present?
+
+        tournament = Scoring::Tournament.new(id: tournament_name,
+                                             api_key: @user.api_key)
+
+        output = "No brackets were loaded."
+
+        if tournament.load
+            tournament.calculate_points
+
+            output = tournament.scene_scores.sort.map(&:to_s).join("\n")
+        end
+
+        render plain: output
+    end
+
     def destroy
         @tournament.destroy
         redirect_to({ action: "index" }, notice: 'The tournament was successfully destroyed.')

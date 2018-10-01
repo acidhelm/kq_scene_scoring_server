@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     delete "/logout",  to: "sessions#destroy"
 
     resources :users do
-        resources :tournaments
+        resources :tournaments do
+            post "refresh", on: :member
+        end
     end
 end

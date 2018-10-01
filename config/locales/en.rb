@@ -94,7 +94,8 @@
                 title: "Title:",
                 slug: "Slug:",
                 subdomain: "Subdomain:",
-                complete: "Complete?"
+                complete: "Complete?",
+                update_now: "Update now"
             },
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
