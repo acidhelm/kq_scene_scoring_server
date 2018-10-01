@@ -51,7 +51,9 @@ class Tournament
         values = @brackets.map { |b| b.config.max_players_to_count }
 
         if values.count(values[0]) != values.size
-            raise "All brackets must have the same \"max_players_to_count\"."
+            msg = "ERROR: All brackets must have the same \"max_players_to_count\"."
+            Rails.logger.error msg
+            raise msg
         end
 
         true

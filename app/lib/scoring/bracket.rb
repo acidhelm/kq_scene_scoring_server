@@ -57,13 +57,18 @@ class Bracket
     # the teams in the bracket.  The values are arrays of `Player` objects
     # representing the players on the team.
     def calculate_points
-        raise "The bracket was not loaded" if !@loaded
+        raise_error "The bracket was not loaded" if !@loaded
 
         calculate_team_points
         calculate_player_points
     end
 
     protected
+
+    def raise_error(msg)
+        Rails.logger.error "ERROR: #{msg}"
+        raise msg
+    end
 
     def read_config
         # Find the match that has the config file attached to it.  By convention,
@@ -73,8 +78,8 @@ class Bracket
             match[:match][:attachment_count] == 1
         end
 
-        raise "No matches with one attachment were found in the bracket" if first_match.empty?
-        raise "Multiple matches have one attachment" if first_match.size > 1
+        raise_error "No matches with one attachment were found in the bracket" if first_match.empty?
+        raise_error "Multiple matches have one attachment" if first_match.size > 1
 
         # Read the options from the config file that's attached to that match.
         url = "https://api.challonge.com/v1/tournaments/#{@id}/matches/" \
@@ -83,7 +88,7 @@ class Bracket
         attachment_list = send_get_request(url)
         asset_url = attachment_list[0][:match_attachment][:asset_url]
 
-        raise "Couldn't find the config file attachment" if asset_url.nil?
+        raise_error "Couldn't find the config file attachment" if asset_url.nil?
 
         uri = URI(asset_url)
 
@@ -96,7 +101,7 @@ class Bracket
         config = send_get_request(uri.to_s)
 
         %i(base_point_value max_players_to_count match_values).each do |key|
-            raise "The config file is missing \"#{key}\"" unless config.key?(key)
+            raise_error "The config file is missing \"#{key}\"" unless config.key?(key)
         end
 
         @config = Config.new(config)
@@ -123,8 +128,8 @@ class Bracket
         end
 
         if missing_teams.any?
-            raise "These teams are in the bracket but not the config file: " +
-                  missing_teams.join(", ")
+            raise_error "These teams are in the bracket but not the config file: " +
+                        missing_teams.join(", ")
         end
     end
 
@@ -151,8 +156,8 @@ class Bracket
             if (@state != "complete" && @state != "awaiting_review") ||
                @challonge_bracket.tournament_type != "double elimination" ||
                array_size != num_matches + 1
-                raise "match_values in the config file is the wrong size." \
-                        " The size is #{array_size}, expected #{num_matches}."
+                raise_error "match_values in the config file is the wrong size." \
+                              " The size is #{array_size}, expected #{num_matches}."
             end
         end
 
@@ -196,7 +201,7 @@ class Bracket
         end
 
         if invalid_teams.any?
-            raise "These teams don't have 5 players: #{invalid_teams.join(', ')}"
+            raise_error "These teams don't have 5 players: #{invalid_teams.join(', ')}"
         end
     end
 
