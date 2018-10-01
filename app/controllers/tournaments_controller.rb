@@ -43,22 +43,32 @@ class TournamentsController < ApplicationController
     end
 
     def refresh
-        subdomain = @tournament.subdomain
-        tournament_name = @tournament.slug
-        tournament_name = "#{subdomain}-#{tournament_name}" if subdomain.present?
+        tournament = TournamentsHelper.calc_scores(
+                         slug: @tournament.slug, subdomain: @tournament.subdomain,
+                         api_key: @user.api_key)
 
-        tournament = Scoring::Tournament.new(id: tournament_name,
-                                             api_key: @user.api_key)
-
-        output = "No brackets were loaded."
-
-        if tournament.load
-            tournament.calculate_points
-
-            output = tournament.scene_scores.sort.map(&:to_s).join("\n")
+        if tournament.scene_scores.blank?
+            render plain: "No brackets could be loaded."
+            return
         end
 
-        render plain: output
+        @tournament.with_lock do
+            tournament.scene_scores.each do |scene|
+                scene_score = @tournament.scene_scores.find_or_initialize_by(name: scene.name)
+                scene_score.score = scene.score
+                scene_score.save
+            end
+
+            @tournament.save
+        end
+
+        msg = +""
+
+        @tournament.scene_scores.sort_by(&:score).reverse_each do |scene|
+            msg << "#{scene.name} has #{scene.score} points.\n"
+        end
+
+        render plain: msg
     end
 
     def destroy
