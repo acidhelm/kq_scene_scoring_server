@@ -1,0 +1,20 @@
+<% content_for :title, @tournament.title %>
+<% content_for :refresh_time, @refresh_time %>
+<% tbd = t(".tbd") %>
+<h1 class="kioskheader"><%= t(".page_header", title: @tournament.title) %></h1>
+<hr>
+
+<table>
+<thead>
+  <th>Rank</th>
+  <th>Scene</th>
+  <th>Score</th>
+<tbody>
+<% @tournament.scene_scores.ranked_order.each.with_index(1) do |scene, i| %>
+  <tr>
+    <td><%= i %></td>
+    <td><%= scene.name %></td>
+    <td><%= scene.score %></td>
+  </tr>
+<% end %>
+</table>

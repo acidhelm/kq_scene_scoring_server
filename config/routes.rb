@@ -10,4 +10,6 @@ Rails.application.routes.draw do
             post "refresh", on: :member
         end
     end
+
+    get "kiosk/:id", to: "kiosk#show", as: :tournament_kiosk
 end

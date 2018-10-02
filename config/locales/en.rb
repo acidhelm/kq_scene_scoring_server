@@ -103,6 +103,12 @@
             view_user: "View this user's info",
             edit_tournament: "Edit this tournament's settings",
             tournament_list: "Back to the tournament list"
+        },
+        kiosk: {
+            show: {
+                page_header: "Scene-wide scores for %{title}"
+            },
+            browser_title: "Scene-wide scores for %{title}"
         }
     }
 }
