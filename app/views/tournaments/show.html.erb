@@ -30,7 +30,7 @@
   <th>Scene</th>
   <th>Score</th>
 <tbody>
-<% @tournament.scene_scores.sort_by(&:score).reverse_each.with_index(1) do |scene, i| %>
+<% @tournament.scene_scores.ranked_order.each.with_index(1) do |scene, i| %>
   <tr>
     <td><%= i %></td>
     <td><%= scene.name %></td>
