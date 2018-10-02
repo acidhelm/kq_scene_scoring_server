@@ -43,32 +43,8 @@ class TournamentsController < ApplicationController
     end
 
     def refresh
-        tournament = TournamentsHelper.calc_scores(
-                         slug: @tournament.slug, subdomain: @tournament.subdomain,
-                         api_key: @user.api_key)
-
-        if tournament.scene_scores.blank?
-            render plain: "No brackets could be loaded."
-            return
-        end
-
-        @tournament.with_lock do
-            tournament.scene_scores.each do |scene|
-                scene_score = @tournament.scene_scores.find_or_initialize_by(name: scene.name)
-                scene_score.score = scene.score
-                scene_score.save
-            end
-
-            @tournament.save
-        end
-
-        msg = +""
-
-        @tournament.scene_scores.sort_by(&:score).reverse_each do |scene|
-            msg << "#{scene.name} has #{scene.score} points.\n"
-        end
-
-        render plain: msg
+        CalculateScoresJob.perform_now(@tournament)
+        redirect_to({ action: "show" }, notice: I18n.t("notices.tournament_updated"))
     end
 
     def destroy
