@@ -22,6 +22,25 @@
 <%= button_to t(".calculate_now"), [:refresh, @tournament.user, @tournament], method: :post %>
 </p>
 
+<hr>
+
+<table>
+<thead>
+  <th>Rank</th>
+  <th>Scene</th>
+  <th>Score</th>
+<tbody>
+<% @tournament.scene_scores.sort_by(&:score).reverse_each.with_index(1) do |scene, i| %>
+  <tr>
+    <td><%= i %></td>
+    <td><%= scene.name %></td>
+    <td><%= scene.score %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr>
+
 <p>
 <%= link_to t("tournaments.edit_tournament"), [:edit, @tournament.user, @tournament] %> |
 <%= link_to t("tournaments.tournament_list"), user_tournaments_path %> |
