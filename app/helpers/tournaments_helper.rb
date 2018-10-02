@@ -8,6 +8,8 @@ module TournamentsHelper
             tournament_id = slug
         end
 
+        Rails.logger.debug "Processing the tournament '#{tournament_id}'"
+
         tournament = Scoring::Tournament.new(id: tournament_id, api_key: api_key)
 
         tournament.calculate_points if tournament.load
