@@ -30,9 +30,9 @@
   <th>Scene</th>
   <th>Score</th>
 <tbody>
-<% @tournament.scene_scores.ranked_order.each.with_index(1) do |scene, i| %>
+<% @tournament.scene_scores.rank_order.each do |scene| %>
   <tr>
-    <td><%= i %></td>
+    <td><%= scene.rank %></td>
     <td><%= scene.name %></td>
     <td><%= scene.score %></td>
   </tr>
