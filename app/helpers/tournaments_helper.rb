@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TournamentsHelper
     # Returns a Scoring::Tournament object whose `scene_scores` member is
     # filled in.
