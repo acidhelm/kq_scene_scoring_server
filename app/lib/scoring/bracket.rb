@@ -11,6 +11,10 @@ class Bracket
         @loaded = false
     end
 
+    def complete?
+        @state == "complete"
+    end
+
     # Returns a boolean indicating whether the bracket was loaded.
     def load
         url = "https://api.challonge.com/v1/tournaments/#{@id}.json"

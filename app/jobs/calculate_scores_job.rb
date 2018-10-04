@@ -6,7 +6,9 @@ class CalculateScoresJob < ApplicationJob
     def perform(tournament)
         Rails.logger.debug "CalculateScoresJob: Processing the tournament '#{tournament.title}'"
 
-        if tournament.complete
+        # You can set the `PROCESS_COMPLETE_TOURNAMENTS` variable to any value
+        # to always process a tournament, even if it's completed.
+        if tournament.complete && !ENV["PROCESS_COMPLETE_TOURNAMENTS"]
             Rails.logger.debug "Returning because the tournament is complete."
             return
         end
@@ -45,6 +47,11 @@ class CalculateScoresJob < ApplicationJob
 
                 scene.save
             end
+
+            Rails.logger.info "Setting the tournament's complete flag to" +
+                              " #{scoring_tournament.complete}"
+
+            tournament.complete = scoring_tournament.complete
 
             tournament.save
         end

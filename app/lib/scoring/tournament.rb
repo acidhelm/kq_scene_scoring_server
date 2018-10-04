@@ -3,11 +3,12 @@
 module Scoring
 
 class Tournament
-    attr_reader :scene_scores
+    attr_reader :scene_scores, :complete
 
     def initialize(id:, api_key:)
         @brackets = []
         @scene_scores = []
+        @complete = false
         @id = id
         @api_key = api_key
     end
@@ -17,12 +18,17 @@ class Tournament
     # Returns true if at least one bracket was loaded, and false otherwise.
     def load
         tournament_id = @id
+        all_brackets_loaded = true
 
         while tournament_id
             Rails.logger.debug "Reading the bracket \"#{tournament_id}\""
 
             bracket = Bracket.new(id: tournament_id, api_key: @api_key)
-            break if !bracket.load
+
+            if !bracket.load
+                all_brackets_loaded = false
+                break
+            end
 
             @brackets << bracket
 
@@ -55,6 +61,10 @@ class Tournament
             Rails.logger.error msg
             raise msg
         end
+
+        # If we loaded all the brackets in the list of brackets, set our
+        # `complete` member based on the states of those brackets.
+        @complete = @brackets.all?(&:complete?) if all_brackets_loaded
 
         true
     end
