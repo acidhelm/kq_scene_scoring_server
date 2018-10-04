@@ -4,6 +4,11 @@ class CalculateScoresJob < ApplicationJob
     def perform(tournament)
         Rails.logger.debug "CalculateScoresJob: Processing the tournament '#{tournament.title}'"
 
+        if tournament.complete
+            Rails.logger.debug "Returning because the tournament is complete."
+            return
+        end
+
         scoring_tournament = TournamentsHelper.calc_scores(
                                  slug: tournament.slug,
                                  subdomain: tournament.subdomain,
