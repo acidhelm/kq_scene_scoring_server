@@ -13,8 +13,8 @@
         },
         notices: {
             user_updated: "The user was updated.",
-            auth_error: "Authentication error. Check that your Challonge user name" \
-                          " and API key are correct.",
+            auth_error: "Authentication error. Check that your Challonge API" \
+                          " key is correct.",
             tournament_created: "The tournament was created.",
             tournament_updated: "The tournament was updated.",
             tournament_deleted: "The tournament was deleted."

@@ -45,6 +45,8 @@ class TournamentsController < ApplicationController
     def refresh
         CalculateScoresJob.perform_now(@tournament)
         redirect_to({ action: "show" }, notice: I18n.t("notices.tournament_updated"))
+    rescue RestClient::Unauthorized
+        redirect_to({ action: "show" }, notice: I18n.t("notices.auth_error"))
     end
 
     def destroy
