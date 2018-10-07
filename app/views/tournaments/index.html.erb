@@ -20,7 +20,7 @@
         <td><%= tournament.title %></td>
         <td><%= tournament.slug %></td>
         <td><%= tournament.subdomain %></td>
-        <td><%= tournament.complete %></td>
+        <td><%= t(tournament.complete ? "tournaments.complete_true" : "tournaments.complete_false") %></td>
         <td><%= link_to t(".show_link"), [tournament.user, tournament] %></td>
         <td><%= link_to t(".edit_link"), [:edit, tournament.user, tournament] %></td>
         <td><%= link_to t(".delete_link"), [tournament.user, tournament], method: :delete %></td>

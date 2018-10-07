@@ -15,7 +15,7 @@
 
 <p>
   <strong><%= t(".complete") %></strong>
-  <%= @tournament.complete %>
+  <%= t(@tournament.complete ? "tournaments.complete_true" : "tournaments.complete_false") %>
 </p>
 
 <p>

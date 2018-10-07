@@ -37,7 +37,7 @@ Open [the login page](http://localhost:3000/login) in a browser and enter the
 user name and password for your KQ Scene Scoring account.  After you log in, you
 will see the list of tournaments that KQ Scene Scoring is calculating scores for.
 
-Click _Watch a new tournament_ to start calculating scores for a new tournament.
+Click _Calculate scores for a tournament_ to start calculating scores for a new tournament.
 Enter a title and the alphanumeric ID of the Challonge bracket.  The alphanumeric
 ID is the part of the URL after `challonge.com`, so for the sample bracket,
 it's `clonekqxxvwc`.  If the bracket is owned by an organization with a

@@ -1,6 +1,6 @@
 {
     en: {
-        browser_title: "%{title} - KQ Scene Scores",
+        browser_title: "%{title} - KQ Scene Scoring",
         browser_title_view: "Viewing %{title}",
         cancel_link: "Cancel",
         log_out_link: "Log out",
@@ -26,67 +26,71 @@
                   " of your KQ Scene Scoring account. If you haven't made an account" \
                   " yet, see <a href='%{url}'>the installation instructions</a>" \
                   " on how to set one up.",
-                user_name_html: "<u>U</u>ser name",
+                user_name_html: "<u>U</u>ser name:",
                 user_name_accesskey: "u",
-                password_html: "<u>P</u>assword",
+                password_html: "<u>P</u>assword:",
                 password_accesskey: "p",
                 log_in_button: "Log in"
             }
         },
         users: {
             edit: {
-                page_title: "Edit settings for %{user_name}",
-                page_header: "Edit settings for %{user_name}"
+                page_title: "Change account settings for %{user_name}",
+                page_header: "Change account settings for %{user_name}"
             },
             form: {
                 errors_list_header: {
-                    one: "1 error prevented this user from being saved:",
-                    other: "%{count} errors prevented this user from being saved:"
+                    one: "1 error prevented the user from being saved:",
+                    other: "%{count} errors prevented the user from being saved:"
                 },
-                api_key_html: "<u>A</u>PI key",
-                password_html: "<u>P</u>assword (leave this blank to keep your current password)",
-                password_confirmation_html: "<u>C</u>onfirm the new password",
-                api_key_accesskey: "a",
+                api_key_html: "<u>C</u>hallonge API key: (" \
+                              "<a target='_blank' href='https://challonge.com/settings/developer'>" \
+                              "Find your API key</a>)",
+                password_html: "<u>P</u>assword: (Leave this blank to keep your current password)",
+                password_confirmation_html: "C<u>o</u>nfirm the new password:",
+                api_key_accesskey: "c",
                 password_accesskey: "p",
-                confirm_password_accesskey: "c"
+                confirm_password_accesskey: "o"
             },
             show: {
+                page_title: "Account settings for %{user_name}",
+                page_header: "Account settings for %{user_name}",
                 user_name: "User name:",
                 api_key: "API key:"
             },
             view_tournaments: "View this user's tournaments",
-            edit_user: "Edit this user's settings"
+            edit_user: "Change this user's settings"
         },
         tournaments: {
             edit: {
-                page_title: "Editing %{tournament_name}",
-                page_header: "Editing %{tournament_name}"
+                page_title: "Settings for %{tournament_name}",
+                page_header: "Settings for %{tournament_name}"
             },
             form: {
                 errors_list_header: {
-                    one: "1 error prevented this tournament from being saved:",
-                    other: "%{count} errors prevented this tournament from being saved:"
+                    one: "1 error prevented the tournament from being saved:",
+                    other: "%{count} errors prevented the tournament from being saved:"
                 },
                 title_html: "<u>T</u>itle:",
-                slug_html: "<u>S</u>lug:",
-                subdomain_html: "S<u>u</u>bdomain:",
-                complete_html: "<u>C</u>omplete?",
+                slug_html: "<u>C</u>hallonge ID: (The part of the URL after \"challonge.com\")",
+                subdomain_html: "S<u>u</u>bdomain: (Fill this in if the brackets are owned by an organization)",
+                complete_html: "C<u>o</u>mplete?",
                 title_accesskey: "t",
-                slug_accesskey: "s",
+                slug_accesskey: "c",
                 subdomain_accesskey: "u",
-                complete_accesskey: "c"
+                complete_accesskey: "o"
             },
             index: {
-                page_title: "Tournaments owned by %{user_name}",
-                page_header: "Tournaments owned by %{user_name}",
+                page_title: "Tournament list for %{user_name}",
+                page_header: "Tournament list for %{user_name}",
                 title: "Title",
-                slug: "Slug",
+                slug: "Challonge ID",
                 subdomain: "Subdomain",
                 complete: "Complete?",
                 actions: "Actions",
-                new_tournament: "Watch a new tournament",
-                show_link: "Show",
-                edit_link: "Edit",
+                new_tournament: "Calculate scores for a new tournament",
+                show_link: "View scores",
+                edit_link: "Change settings",
                 delete_link: "Delete"
             },
             new: {
@@ -95,13 +99,15 @@
             },
             show: {
                 title: "Title:",
-                slug: "Slug:",
+                slug: "Challonge ID:",
                 subdomain: "Subdomain:",
                 complete: "Complete?",
                 calculate_now: "Calculate scores now"
             },
+            complete_true: "Yes",
+            complete_false: "No",
             view_user: "View this user's info",
-            edit_tournament: "Edit this tournament's settings",
+            edit_tournament: "Change this tournament's settings",
             tournament_list: "Back to the tournament list"
         },
         kiosk: {

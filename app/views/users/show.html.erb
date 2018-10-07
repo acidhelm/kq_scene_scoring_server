@@ -1,19 +1,15 @@
-<% content_for :title, @user.user_name %>
+<% content_for :title, t(".page_title", user_name: @user.user_name) %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong><%= t(".user_name") %></strong>
-  <%= @user.user_name %>
-</p>
+<h1><%= t(".page_header", user_name: @user.user_name) %></h1>
 
 <p>
   <strong><%= t(".api_key") %></strong>
   <%= @user.api_key %>
 </p>
 
-<p><%= link_to t("users.view_tournaments"), user_tournaments_path(@user) %></p>
-
 <p>
+<%= link_to t("users.view_tournaments"), user_tournaments_path(@user) %> |
 <%= link_to t("users.edit_user"), [:edit, @user] %> |
 <%= link_to t("log_out_link"), logout_path, method: :delete %>
 </p>
