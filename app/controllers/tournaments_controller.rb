@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TournamentsController < ApplicationController
-    USER_ONLY_METHODS = %i(index new create)
+    USER_ONLY_METHODS = %i(index new create).freeze
 
     before_action :set_user, only: USER_ONLY_METHODS
     before_action :set_tournament, except: USER_ONLY_METHODS

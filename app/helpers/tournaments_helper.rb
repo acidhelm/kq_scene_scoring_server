@@ -4,11 +4,11 @@ module TournamentsHelper
     # Returns a Scoring::Tournament object whose `scene_scores` member is
     # filled in.
     def self.calc_scores(slug:, subdomain:, api_key:)
-        if subdomain.present?
-            tournament_id = "#{subdomain}-#{slug}"
-        else
-            tournament_id = slug
-        end
+        tournament_id = if subdomain.present?
+                            "#{subdomain}-#{slug}"
+                        else
+                            slug
+                        end
 
         Rails.logger.debug "Processing the tournament '#{tournament_id}'"
 

@@ -48,8 +48,8 @@ class CalculateScoresJob < ApplicationJob
                 scene.save
             end
 
-            Rails.logger.info "Setting the tournament's complete flag to" +
-                              " #{scoring_tournament.complete}"
+            Rails.logger.info "Setting the tournament's complete flag to" \
+                                " #{scoring_tournament.complete}"
 
             tournament.complete = scoring_tournament.complete
 
