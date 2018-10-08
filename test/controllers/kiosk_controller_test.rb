@@ -1,8 +1,8 @@
-require 'test_helper'
+require "test_helper"
 
 class KioskControllerTest < ActionDispatch::IntegrationTest
-    # test "should get show" do
-    #     get kiosk_show_url
-    #     assert_response :success
-    # end
+    test "Try to view the kiosk for a non-existant tournament" do
+        get tournament_kiosk_url("foo")
+        assert_response :not_found
+    end
 end
