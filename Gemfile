@@ -53,5 +53,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem "vcr"
+  gem "webmock"
+end
+
 gem "attr_encrypted"
 gem "rest-client"
