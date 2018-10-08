@@ -1,48 +1,23 @@
-require 'test_helper'
+require "test_helper"
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @session = sessions(:one)
-  end
-
-  test "should get index" do
-    get sessions_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_session_url
-    assert_response :success
-  end
-
-  test "should create session" do
-    assert_difference('Session.count') do
-      post sessions_url, params: { session: {  } }
+    test "Get the login page" do
+        get login_path
+        assert_response :success
     end
 
-    assert_redirected_to session_url(Session.last)
-  end
-
-  test "should show session" do
-    get session_url(@session)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_session_url(@session)
-    assert_response :success
-  end
-
-  test "should update session" do
-    patch session_url(@session), params: { session: {  } }
-    assert_redirected_to session_url(@session)
-  end
-
-  test "should destroy session" do
-    assert_difference('Session.count', -1) do
-      delete session_url(@session)
+    test "Access the logout URL" do
+        delete logout_path
+        assert_redirected_to root_url
     end
 
-    assert_redirected_to sessions_url
-  end
+    test "Try to get a user page without logging in" do
+        get user_path(users(:willow).id)
+        assert_redirected_to login_path
+        assert flash.present?
+    end
+
+    test "Try to get the routes page" do
+        assert_raises(ActionController::RoutingError) { get "/routes" }
+    end
 end
