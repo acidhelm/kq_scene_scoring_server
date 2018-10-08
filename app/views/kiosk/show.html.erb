@@ -1,20 +1,19 @@
 <% content_for :title, @tournament.title %>
 <% content_for :refresh_time, @refresh_time %>
-<% tbd = t(".tbd") %>
-<h1 class="kioskheader"><%= t(".page_header", title: @tournament.title) %></h1>
+<div class="kiosk_title"><%= t(".page_header", title: @tournament.title) %></div>
 <hr>
 
-<p><table>
+<p><table class="kiosk_table">
 <thead>
-  <th>Rank</th>
-  <th>Scene</th>
-  <th>Score</th>
+  <th class="kiosk_column_header">Rank</th>
+  <th class="kiosk_column_header">Scene</th>
+  <th class="kiosk_column_header">Score</th>
 <tbody>
 <% @tournament.scene_scores.rank_order.each do |scene| %>
   <tr>
-    <td><%= scene.rank %></td>
-    <td><%= scene.name %></td>
-    <td><%= scene.score %></td>
+    <td class="kiosk_column"><%= scene.rank %></td>
+    <td class="kiosk_column"><%= scene.name %></td>
+    <td class="kiosk_column"><%= scene.score %></td>
   </tr>
 <% end %>
 </table></p>
