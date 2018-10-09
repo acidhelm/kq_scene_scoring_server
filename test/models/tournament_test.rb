@@ -1,7 +1,17 @@
-require 'test_helper'
+require "test_helper"
 
 class TournamentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+    def setup
+        @tournament = tournaments(:one)
+    end
+
+    test "Try to save a tournament with an illegal title" do
+        @tournament.title = ""
+        assert_not @tournament.save
+    end
+
+    test "Try to save a tournament with an illegal slug" do
+        @tournament.slug = ""
+        assert_not @tournament.save
+    end
 end
