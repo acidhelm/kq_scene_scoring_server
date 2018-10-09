@@ -3,6 +3,8 @@
 class SceneScore < ApplicationRecord
     belongs_to :tournament
 
+    validates :name, presence: true
+    validates :score, numericality: { greater_than_or_equal_to: 0 }
     validates :rank, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
     scope :alphabetical_order, -> { order(name: :asc) }

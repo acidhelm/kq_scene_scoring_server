@@ -1,11 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  score: 9.99
+  name: Elbonia
+  score: 123.5
+  rank: 1
   tournament: one
 
 two:
-  name: MyString
-  score: 9.99
-  tournament: two
+  name: Eternia
+  score: 64.0
+  rank: 2
+  tournament: one
+
