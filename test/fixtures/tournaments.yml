@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  slug: 1001
+  slug: 1003
   title: Elbonia KQ Clash
   complete: true
   user: willow
