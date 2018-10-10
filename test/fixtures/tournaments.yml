@@ -17,3 +17,9 @@ live_data_4teams:
   title: "Test 4-team bracket"
   complete: true
   user: test_user
+
+live_data_kq25:
+  slug: "clonekqxxvwc"
+  title: "Test copy of KQ 25"
+  complete: false
+  user: test_user

@@ -21,3 +21,15 @@ live_data_4teams_<%= i %>:
   rank: <%= r %>
   tournament: live_data_4teams
 <% end %>
+
+<% [ [ "New York", 391.5, 1 ], [ "Chicago", 370.5, 2 ], [ "Charlotte", 316.5, 3 ],
+     [ "Minneapolis", 292.0, 4 ], [ "Portland", 275.0, 5 ], [ "Columbus", 219.5, 6 ],
+     [ "Kansas City", 160.5, 7 ], [ "Seattle", 88.0, 8 ], [ "Madison", 73.0, 9 ],
+     [ "Austin", 46.0, 10 ], [ "San Francisco", 37.0, 11 ], [ "CHA", 21.0, 12 ],
+     [ "Los Angeles", 15.5, 13 ], [ "Iowa", 11.0, 14 ] ].each_with_index do |(n, s, r), i| %>
+live_data_kq25_<%= i %>:
+  name: <%= n %>
+  score: <%= s %>
+  rank: <%= r %>
+  tournament: live_data_kq25
+<% end %>
