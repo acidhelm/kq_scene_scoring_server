@@ -2,6 +2,11 @@ require "test_helper"
 
 class TournamentsHelperTest < ActionView::TestCase
     def verify_scores(tournament)
+        if tournament.user.api_key.blank?
+            flunk "You must set the \"KQSS_TEST_USER_API_KEY\"" \
+                    " environment variable to run this test."
+        end
+
         scoring_tournament = nil
 
         VCR.use_cassette("calc_scores_test_#{tournament.slug}") do
