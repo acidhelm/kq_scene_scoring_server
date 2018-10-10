@@ -1,3 +1,6 @@
+[![Build status](https://travis-ci.com/acidhelm/kq_scene_scoring_server.svg?branch=master)](https://travis-ci.com/acidhelm/kq_scene_scoring_server)
+[![Coverage status](https://coveralls.io/repos/github/acidhelm/kq_scene_scoring_server/badge.svg?branch=master)](https://coveralls.io/github/acidhelm/kq_scene_scoring_server?branch=master)
+
 # Killer Queen Scene-wide scoring
 
 KQ Scene Scoring is a Rails app that implements the scene-wide scoring system
