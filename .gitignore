@@ -79,5 +79,3 @@ build-iPhoneSimulator/
 # Ignore simplecov reports.
 /coverage
 
-cache*.json
-
