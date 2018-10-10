@@ -12,7 +12,8 @@ two:
   complete: false
   user: buffy
 
-live_data_tournament:
-  slug: 4424522
-  title: "Test #5 double-elim tourney"
+live_data_4teams:
+  slug: "tvtpeasf"
+  title: "Test 4-team bracket"
   complete: true
+  user: test_user
