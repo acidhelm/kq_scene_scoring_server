@@ -27,6 +27,13 @@ class ActiveSupport::TestCase
     def logged_in?
         return session[:user_id].present?
     end
+
+    def check_api_key(user)
+        if user.api_key.blank?
+            flunk "You must set the \"KQSS_TEST_USER_API_KEY\"" \
+                    " environment variable to run this test."
+        end
+    end
 end
 
 class ActionDispatch::IntegrationTest

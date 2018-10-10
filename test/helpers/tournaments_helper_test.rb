@@ -2,10 +2,7 @@ require "test_helper"
 
 class TournamentsHelperTest < ActionView::TestCase
     def verify_scores(tournament)
-        if tournament.user.api_key.blank?
-            flunk "You must set the \"KQSS_TEST_USER_API_KEY\"" \
-                    " environment variable to run this test."
-        end
+        check_api_key(tournament.user)
 
         scoring_tournament = nil
 
