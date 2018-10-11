@@ -5,9 +5,12 @@
 
 <p><table class="kiosk_table">
 <thead>
-  <th class="kiosk_column_header">Rank</th>
-  <th class="kiosk_column_header">Scene</th>
-  <th class="kiosk_column_header">Score</th>
+  <tr>
+    <th class="kiosk_column_header">Rank</th>
+    <th class="kiosk_column_header">Scene</th>
+    <th class="kiosk_column_header">Score</th>
+  </tr>
+</thead>
 <tbody>
 <% @tournament.scene_scores.rank_order.each do |scene| %>
   <tr>
@@ -16,4 +19,5 @@
     <td class="kiosk_column"><%= scene.score %></td>
   </tr>
 <% end %>
+</tbody>
 </table></p>
