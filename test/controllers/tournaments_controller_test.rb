@@ -155,6 +155,27 @@ class TournamentsControllerTest < ActionDispatch::IntegrationTest
         assert_not flash.empty?
     end
 
+    test "Recalculate a tournament's scores" do
+        @tournament = tournaments(:live_data_4teams)
+        @user = @tournament.user
+
+        log_in_as(@user)
+        assert logged_in?
+
+        VCR.use_cassette("calc_scores_test_#{@tournament.slug}") do
+            post refresh_user_tournament_path(@user, @tournament)
+        end
+
+        assert_redirected_to user_tournament_path(@user, @tournament)
+        assert_equal "The tournament's scores were updated.", flash[:notice]
+    end
+
+    test "Try to recalculate a tournament's scores without logging in" do
+        post refresh_user_tournament_path(@user, @tournament)
+        assert_redirected_to login_url
+        assert_not flash.empty?
+    end
+
     test "Create a tournament" do
         log_in_as(@user)
         assert logged_in?
