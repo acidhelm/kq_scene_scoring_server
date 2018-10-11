@@ -17,7 +17,8 @@
                           " key is correct.",
             tournament_created: "The tournament was created.",
             tournament_updated: "The tournament was updated.",
-            tournament_deleted: "The tournament was deleted."
+            tournament_deleted: "The tournament was deleted.",
+            scores_updated: "The tournament's scores were updated."
         },
         sessions: {
             new: {
