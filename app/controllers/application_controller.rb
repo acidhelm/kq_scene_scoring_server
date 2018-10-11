@@ -49,26 +49,4 @@ class ApplicationController < ActionController::Base
 
         render_not_found_error(:tournament) if @tournament.blank?
     end
-
-    # Takes a response object from a Challonge API call, and returns true if
-    # the response indicates an error.  In that case, the function yields an
-    # error message, which the caller should use to render an error.
-    # For example:
-    #     resp = call_a_challonge_api
-    #
-    #     return true if api_failed?(resp) do |msg|
-    #         render plain: msg, status: 400
-    #     end
-    def api_failed?(response)
-        return false unless response.is_a?(Hash) && response.key?(:error)
-
-        msg = if response.dig(:error, :http_code) == 401
-                  I18n.t("notices.auth_error")
-              else
-                  response.dig(:error, :message)
-              end
-
-        yield msg
-        return true
-    end
 end
