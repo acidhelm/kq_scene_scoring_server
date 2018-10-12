@@ -15,9 +15,9 @@
 <tbody>
 <% @tournament.scene_scores.rank_order.each do |scene| %>
   <tr>
-    <td class="kiosk_column"><%= scene.rank %></td>
-    <td class="kiosk_column"><%= scene.name %></td>
-    <td class="kiosk_column"><%= scene.score %></td>
+    <td class="kiosk_rank"><%= scene.rank %></td>
+    <td class="kiosk_scene"><%= scene.name %></td>
+    <td class="kiosk_score"><%= scene.score %></td>
   </tr>
 <% end %>
 </tbody>
