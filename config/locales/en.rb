@@ -115,9 +115,6 @@
             tournament_list: "Back to the tournament list"
         },
         kiosk: {
-            show: {
-                page_header: "Scene scores"
-            },
             browser_title: "Scene scores for Bumble Bash 3"
         }
     }
