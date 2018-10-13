@@ -116,9 +116,9 @@
         },
         kiosk: {
             show: {
-                page_header: "Scene-wide scores"
+                page_header: "Scene scores"
             },
-            browser_title: "Scene-wide scores for Bumble Bash 3"
+            browser_title: "Scene scores for Bumble Bash 3"
         }
     }
 }
