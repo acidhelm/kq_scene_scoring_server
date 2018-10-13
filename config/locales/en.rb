@@ -88,9 +88,12 @@
                 slug: "Challonge ID",
                 subdomain: "Subdomain",
                 complete: "Complete?",
+                links: "Links",
                 actions: "Actions",
                 new_tournament: "Calculate scores for a new tournament",
                 show_link: "View scores",
+                kiosk_link: "Kiosk",
+                challonge_link: "Challonge bracket",
                 edit_link: "Change settings",
                 delete_link: "Delete"
             },
