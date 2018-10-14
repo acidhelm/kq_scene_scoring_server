@@ -23,8 +23,8 @@
         <td><%= tournament.subdomain %></td>
         <td><%= t(tournament.complete ? "tournaments.complete_true" : "tournaments.complete_false") %></td>
         <td><%= link_to t(".show_link"), [tournament.user, tournament] %></td>
-        <td><%= link_to t(".kiosk_link"), tournament_kiosk_path(tournament.slug), target: :blank %></td>
-        <td><%= link_to t(".challonge_link"), tournament.challonge_url, target: :blank %></td>
+        <td><%= link_to t(".kiosk_link"), tournament_kiosk_path(tournament.slug), target: :_blank %></td>
+        <td><%= link_to t(".challonge_link"), tournament.challonge_url, target: :_blank %></td>
         <td><%= link_to t(".edit_link"), [:edit, tournament.user, tournament] %></td>
         <td><%= link_to t(".delete_link"), [tournament.user, tournament], method: :delete %></td>
       </tr>
