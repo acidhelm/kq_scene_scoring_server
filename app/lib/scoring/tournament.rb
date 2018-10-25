@@ -63,8 +63,12 @@ class Tournament
         end
 
         # If we loaded all the brackets in the list of brackets, set our
-        # `complete` member based on the states of those brackets.
-        @complete = @brackets.all?(&:complete?) if all_brackets_loaded
+        # `complete` member based on the complete state of the last bracket.
+        # We only check the last bracket because previous brackets in the
+        # sequence are not guaranteed to be marked as complete on Challonge.
+        # For an example, see "bb3wc".  The BB3 wild card bracket was not
+        # marked as complete because play stopped once it got down to 4 teams.
+        @complete = all_brackets_loaded && @brackets.last.complete?
 
         true
     end
