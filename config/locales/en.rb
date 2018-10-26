@@ -112,9 +112,6 @@
             tournament_list: "Back to the tournament list"
         },
         kiosk: {
-            show: {
-                page_header: "Scene scores for %{title}"
-            },
             browser_title: "Scene scores for %{title}"
         }
     }
