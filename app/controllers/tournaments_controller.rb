@@ -9,7 +9,7 @@ class TournamentsController < ApplicationController
     before_action :correct_user?
 
     def index
-        @tournaments = Tournament.all
+        @tournaments = @user.tournaments
     end
 
     def show
