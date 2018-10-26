@@ -16,6 +16,22 @@
 
 .kiosk_table
 {
+    border-collapse: collapse;
+
+    th, td
+    {
+        padding: 5pt;
+    }
+
+    th
+    {
+        border-bottom: 3px solid red;
+    }
+
+    tr:nth-child(even)
+    {
+        background-color: #222;
+    }
 }
 
 .kiosk_column_header
