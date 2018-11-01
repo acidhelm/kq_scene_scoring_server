@@ -56,7 +56,7 @@ Then run this command to make an account:
 ```
 
 The user name and password that you set here are used to log in to KQ Scene
-Scoring.  They do not have to be the same as your Challonge password.
+Scoring.  They do not have to be the same as your Challonge user name and password.
 
 # Running KQ Scene Scoring on Heroku
 
