@@ -14,6 +14,6 @@ module SceneScoringServer
         # Application configuration should go into files in config/initializers
         # -- all .rb files in that directory are automatically loaded.
 
-        config.kiosk_refresh_time = 10.seconds
+        config.kiosk_refresh_time = 15.seconds
     end
 end
