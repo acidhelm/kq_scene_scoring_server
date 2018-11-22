@@ -1,5 +1,7 @@
 <% content_for :title, @tournament.title %>
-<% content_for :refresh_tag, @refresh_tag %>
+<% refresh_tag = @tournament.complete ? "" :
+                   "<meta http-equiv='refresh' content='#{@refresh_time}'>".html_safe %>
+<% content_for :refresh_tag, refresh_tag %>
 
 <p><table class="kiosk_table">
 <thead>
