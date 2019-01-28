@@ -7,7 +7,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     # setup step.  The simplest way to do that is:
     #   setup :setup_log_in
     def setup_log_in
-        @user = users(:test_user)
+        @user = users(:user_test)
 
         if @user.api_key.blank?
             flunk "You must set the \"KQSS_TEST_USER_API_KEY\"" \
@@ -24,7 +24,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
         fill_in :password, with: password
         click_on "Log in"
 
-        assert_current_path(user_path(user))
+        assert_current_path(user_tournaments_path(user))
     end
 
     def take_failed_screenshot
