@@ -10,7 +10,8 @@
             tournament_not_found: "That tournament was not found.",
             user_not_found: "That user was not found.",
             login_failed: "The user name or password was incorrect.",
-            invalid_api_key: "can contain only letters and numbers"
+            invalid_api_key: "can contain only letters and numbers",
+            invalid_slug: "can contain only letters, numbers, and underscores"
         },
         notices: {
             user_updated: "The user was updated.",

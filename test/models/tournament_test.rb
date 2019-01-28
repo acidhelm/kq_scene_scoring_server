@@ -10,8 +10,20 @@ class TournamentTest < ActiveSupport::TestCase
         assert_not @tournament.save
     end
 
-    test "Try to save a tournament with an illegal slug" do
+    test "Try to save a tournament with an empty slug" do
         @tournament.slug = ""
         assert_not @tournament.save
+    end
+
+    test "Try to save a tournament with an illegal slug" do
+        @tournament.slug = "bad~slug~"
+        assert_not @tournament.save
+    end
+
+    test "Try to save a tournament with a duplicate slug" do
+        t2 = @tournament.dup
+        t2.slug.upcase!
+
+        assert_not t2.save
     end
 end
