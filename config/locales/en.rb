@@ -9,7 +9,8 @@
             page_access_denied: "You cannot access that page.",
             tournament_not_found: "That tournament was not found.",
             user_not_found: "That user was not found.",
-            login_failed: "The user name or password was incorrect."
+            login_failed: "The user name or password was incorrect.",
+            invalid_api_key: "can contain only letters and numbers"
         },
         notices: {
             user_updated: "The user was updated.",
