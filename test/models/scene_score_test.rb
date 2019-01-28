@@ -2,7 +2,7 @@ require "test_helper"
 
 class SceneScoreTest < ActiveSupport::TestCase
     def setup
-        @score = scene_scores(:one)
+        @score = scene_scores(:scene_score_1)
     end
 
     test "Update a score" do

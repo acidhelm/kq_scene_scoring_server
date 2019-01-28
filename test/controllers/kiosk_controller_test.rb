@@ -2,7 +2,7 @@ require "test_helper"
 
 class KioskControllerTest < ActionDispatch::IntegrationTest
     setup do
-        @tournament = tournaments(:one)
+        @tournament = tournaments(:tournament_1)
         @slug = @tournament.slug
         @bad_slug = @slug.reverse
     end

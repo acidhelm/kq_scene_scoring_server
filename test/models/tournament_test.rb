@@ -2,7 +2,7 @@ require "test_helper"
 
 class TournamentTest < ActiveSupport::TestCase
     def setup
-        @tournament = tournaments(:one)
+        @tournament = tournaments(:tournament_1)
     end
 
     test "Try to save a tournament with an illegal title" do

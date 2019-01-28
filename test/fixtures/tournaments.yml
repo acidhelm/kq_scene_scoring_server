@@ -1,23 +1,23 @@
-one:
+tournament_1:
   slug: 1003
   title: Elbonia KQ Clash
   complete: true
-  user: willow
+  user: user_willow
 
-two:
+tournament_2:
   slug: 1002
   title: Sunnydale KQ Clash
   complete: false
-  user: buffy
+  user: user_buffy
 
 live_data_4teams:
   slug: "tvtpeasf"
   title: "Test 4-team bracket"
   complete: true
-  user: test_user
+  user: user_test
 
 live_data_kq25:
   slug: "clonekqxxvwc"
   title: "Test copy of KQ 25"
   complete: false
-  user: test_user
+  user: user_test
