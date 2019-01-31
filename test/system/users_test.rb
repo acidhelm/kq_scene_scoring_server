@@ -57,6 +57,9 @@ class UsersTest < ApplicationSystemTestCase
 
         visit edit_user_url(@user)
 
+        assert_button "Update User", exact: true
+        assert_link "Cancel", href: "javascript:history.back()", exact: true
+
         fill_in "user_api_key", with: "buffythevampireslayer"
         fill_in "user[password]", with: new_password
         fill_in "user[password_confirmation]", with: new_password
