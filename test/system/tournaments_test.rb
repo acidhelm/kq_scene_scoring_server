@@ -20,33 +20,45 @@ class TournamentsTest < ApplicationSystemTestCase
         end
 
         # Check the list of tournaments.
-        page.all("tbody tr").each do |tr|
+        page.all("tbody tr").each_with_index do |tr, t|
+            tournament = @user.tournaments[t]
+
             tr.all("td").each_with_index do |td, i|
                 case i
-                    when 0, 1
-                        # The Name and Challonge ID columns should have text.
-                        # We don't check column index 2, the subdomain, because
-                        # that can be blank.
-                        assert td.text.present?
+                    when 0
+                        assert_equal tournament.title, td.text
+                    when 1
+                        assert_equal tournament.slug, td.text
+                    when 2
+                        assert_equal tournament.subdomain, td.text if tournament.subdomain.present?
                     when 3
-                        assert td.text == "Yes" || td.text == "No"
+                        assert_equal tournament.complete ? "Yes" : "No", td.text
                     when 4
-                        assert td.has_link? "View scores", exact: true
+                        assert td.has_link? "View scores",
+                               href: user_tournament_path(@user, tournament),
+                               exact: true
                     when 5
-                        assert td.has_link? "Kiosk", exact: true
+                        assert td.has_link? "Kiosk",
+                               href: tournament_kiosk_path(tournament.slug),
+                               exact: true
                     when 6
-                        assert td.has_link? "Challonge bracket", exact: true
+                        if tournament.subdomain.present?
+                            href = "https://#{tournament.subdomain}."
+                        else
+                            href = "https://"
+                        end
 
-                        # Check that the "Challonge" link points to a valid
-                        # Challonge URL.
-                        uri = URI.parse(td.find("a")[:href])
+                        href << "challonge.com/#{tournament.slug}"
 
-                        assert uri.host =~ /^([a-zA-Z0-9-]+\.)?challonge\.com$/
-                        assert uri.path =~ /^\/\w+$/
+                        assert td.has_link? "Challonge bracket", href: href, exact: true
                     when 7
-                        assert td.has_link? "Change settings", exact: true
+                        assert td.has_link? "Change settings",
+                               href: edit_user_tournament_path(@user, tournament),
+                               exact: true
                     when 8
-                        assert td.has_link? "Delete", exact: true
+                        assert td.has_link? "Delete",
+                               href: user_tournament_path(@user, tournament),
+                               exact: true
                 end
             end
         end
