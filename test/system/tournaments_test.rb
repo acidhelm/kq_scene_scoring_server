@@ -107,4 +107,16 @@ class TournamentsTest < ApplicationSystemTestCase
                     href: user_tournaments_path(@user), exact: true
         assert_link "Log out", href: logout_path, exact: true
     end
+
+    test "Check the new-tournament page" do
+        visit new_user_tournament_url(@user)
+
+        assert_selector "h1", exact_text: "Calculate scores for a Challonge tournament"
+        assert_selector "label", exact_text: "Title:"
+        assert_selector "label", text: "Challonge ID:"
+        assert_selector "label", text: "Subdomain:"
+        assert_button "Create Tournament", exact: true
+        assert_link "Back to the tournament list", href: user_tournaments_path(@user),
+                    exact: true
+    end
 end
