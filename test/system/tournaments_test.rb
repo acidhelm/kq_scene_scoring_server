@@ -119,4 +119,27 @@ class TournamentsTest < ApplicationSystemTestCase
         assert_link "Back to the tournament list", href: user_tournaments_path(@user),
                     exact: true
     end
+
+    test "Check the edit-tournament page" do
+        tournament = tournaments(:live_data_kq25)
+
+        visit edit_user_tournament_url(@user, tournament)
+
+        assert_selector "h1", exact_text: "Settings for #{tournament.title}"
+        assert_selector "label", exact_text: "Title:"
+        assert_field "tournament_title", with: tournament.title, exact: true
+        assert_selector "label", text: "Challonge ID:"
+        assert_field "tournament_slug", with: tournament.slug, exact: true
+        assert_selector "label", text: "Subdomain:"
+        assert_field "tournament_subdomain", with: tournament.subdomain, exact: true
+
+        if tournament.complete
+            assert_checked_field "tournament_complete"
+        else
+            assert_no_checked_field "tournament_complete"
+        end
+
+        assert_button "Update Tournament", exact: true
+        assert_link "Cancel", href: "javascript:history.back()", exact: true
+    end
 end
