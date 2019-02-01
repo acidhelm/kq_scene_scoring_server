@@ -113,8 +113,12 @@ class TournamentsTest < ApplicationSystemTestCase
 
         assert_selector "h1", exact_text: "Calculate scores for a Challonge tournament"
         assert_selector "label", exact_text: "Title:"
+        assert_field "tournament_title"
         assert_selector "label", text: "Challonge ID:"
+        assert_field "tournament_slug"
         assert_selector "label", text: "Subdomain:"
+        assert_field "tournament_subdomain"
+
         assert_button "Create Tournament", exact: true
         assert_link "Back to the tournament list", href: user_tournaments_path(@user),
                     exact: true
