@@ -4,13 +4,14 @@ class KioskControllerTest < ActionDispatch::IntegrationTest
     setup do
         @tournament = tournaments(:tournament_1)
         @slug = @tournament.slug
-        @bad_slug = @slug.reverse
+        @bad_slug = @slug.succ
     end
 
     test "View the kiosk for a tournament" do
         [ @slug, @slug.upcase ].each do |id|
             get tournament_kiosk_url(id)
             assert_response :success
+            assert_template "kiosk/show"
         end
     end
 
