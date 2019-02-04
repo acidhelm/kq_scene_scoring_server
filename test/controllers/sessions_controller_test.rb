@@ -16,14 +16,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "Try to log in with incorrect credentials" do
-        user = users(:user_willow)
-
-        post login_path, params: { session: { user_name: user.user_name,
-                                              password: "invalidpassword" } }
-
-        assert_not logged_in?
-        assert_not flash.empty?
-        assert_template "sessions/new"
+        log_in_as(users(:user_willow), "invalidpassword", expect_success: false)
     end
 
     test "Try to get a user page without logging in" do

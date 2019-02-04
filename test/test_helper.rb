@@ -37,10 +37,16 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-    def log_in_as(user, password = "password")
+    def log_in_as(user, password = "password", expect_success: true)
         post login_path, params: { session: { user_name: user.user_name,
                                               password: password } }
 
-        assert_redirected_to user_tournaments_path(user)
+        if expect_success
+            assert_redirected_to user_tournaments_path(user)
+        else
+            assert_not logged_in?
+            assert_not flash.empty?
+            assert_template "sessions/new"
+        end
     end
 end
