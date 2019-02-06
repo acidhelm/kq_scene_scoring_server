@@ -64,12 +64,6 @@ class TournamentsTest < ApplicationSystemTestCase
         end
     end
 
-    EXPECTED_SCORES = [ %w(New\ York 391.5), %w(Chicago 370.5), %w(Charlotte 316.5),
-                        %w(Minneapolis 292.0), %w(Portland 275.0), %w(Columbus 219.5),
-                        %w(Kansas\ City 160.5), %w(Seattle 88.0), %w(Madison 73.0),
-                        %w(Austin 46.0), %w(San\ Francisco 37.0), %w(CHA 21.0),
-                        %w(Los\ Angeles 15.5), %w(Iowa 11.0) ]
-
     test "Check the show-tournament page" do
         tournament = tournaments(:live_data_kq25)
 
@@ -88,15 +82,17 @@ class TournamentsTest < ApplicationSystemTestCase
         assert_selector "th", exact_text: "Scene"
         assert_selector "th", exact_text: "Score"
 
-        page.all("tbody tr").each_with_index do |tr, row|
+        page.all("tbody tr").each.with_index(1) do |tr, row|
+            scene_score = scene_scores("live_data_kq25_#{row}")
+
             tr.all("td").each_with_index do |td, i|
                 case i
                     when 0
-                        assert_equal (row + 1).to_s, td.text
+                        assert_equal scene_score.rank.to_s, td.text
                     when 1
-                        assert_equal EXPECTED_SCORES[row][0], td.text
+                        assert_equal scene_score.name, td.text
                     when 2
-                        assert_equal EXPECTED_SCORES[row][1], td.text
+                        assert_equal scene_score.score.to_s, td.text
                 end
             end
         end
