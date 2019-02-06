@@ -17,7 +17,7 @@
 
   <tbody>
     <% @tournaments.each do |tournament| %>
-      <tr>
+      <tr id="tournament<%= tournament.id %>">
         <td><%= tournament.title %></td>
         <td><%= tournament.slug %></td>
         <td><%= tournament.subdomain %></td>

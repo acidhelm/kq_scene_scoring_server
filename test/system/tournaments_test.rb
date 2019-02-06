@@ -20,8 +20,8 @@ class TournamentsTest < ApplicationSystemTestCase
         end
 
         # Check the list of tournaments.
-        page.all("tbody tr").each_with_index do |tr, t|
-            tournament = @user.tournaments[t]
+        page.all("tbody tr").each do |tr|
+            tournament = Tournament.find(tr[:id].slice(/\d+\z/))
 
             tr.all("td").each_with_index do |td, i|
                 case i
