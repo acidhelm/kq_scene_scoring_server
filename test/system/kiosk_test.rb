@@ -25,4 +25,18 @@ class KioskTest < ApplicationSystemTestCase
             end
         end
     end
+
+    test "Check meta refresh tags" do
+        tag = "/html/head/meta[@http-equiv='refresh']"
+
+        visit tournament_kiosk_url(tournaments(:live_data_kq25).slug)
+
+        assert page.find(:xpath, tag, visible: false)
+
+        visit tournament_kiosk_url(tournaments(:live_data_4teams).slug)
+
+        assert_raises(Capybara::ElementNotFound) do
+            page.find(:xpath, tag, visible: false)
+        end
+    end
 end
