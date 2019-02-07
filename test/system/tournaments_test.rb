@@ -125,11 +125,11 @@ class TournamentsTest < ApplicationSystemTestCase
 
         assert_selector "h1", exact_text: "Settings for #{tournament.title}"
         assert_selector "label", exact_text: "Title:"
-        assert_field "tournament_title", type: "text", with: tournament.title, exact: true
+        assert_field "tournament_title", type: "text", with: tournament.title
         assert_selector "label", text: "Challonge ID:"
-        assert_field "tournament_slug", type: "text", with: tournament.slug, exact: true
+        assert_field "tournament_slug", type: "text", with: tournament.slug
         assert_selector "label", text: "Subdomain:"
-        assert_field "tournament_subdomain", type: "text", with: tournament.subdomain, exact: true
+        assert_field "tournament_subdomain", type: "text", with: tournament.subdomain
 
         if tournament.complete
             assert_checked_field "tournament_complete"
