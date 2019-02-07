@@ -29,6 +29,7 @@
   <th>Rank</th>
   <th>Scene</th>
   <th>Score</th>
+</thead>
 <tbody>
 <% @tournament.scene_scores.rank_order.each do |scene| %>
   <tr>
@@ -37,6 +38,7 @@
     <td><%= scene.score %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <hr>
