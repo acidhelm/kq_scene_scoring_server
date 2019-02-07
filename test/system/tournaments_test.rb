@@ -34,13 +34,11 @@ class TournamentsTest < ApplicationSystemTestCase
                     when 3
                         assert_equal tournament.complete ? "Yes" : "No", td.text
                     when 4
-                        assert td.has_link? "View scores",
-                               href: user_tournament_path(@user, tournament),
-                               exact: true
+                        assert td.has_link? "View scores", exact: true,
+                               href: user_tournament_path(@user, tournament)
                     when 5
-                        assert td.has_link? "Kiosk",
-                               href: tournament_kiosk_path(tournament.slug),
-                               exact: true
+                        assert td.has_link? "Kiosk", exact: true,
+                               href: tournament_kiosk_path(tournament.slug)
                     when 6
                         if tournament.subdomain.present?
                             href = "https://#{tournament.subdomain}."
@@ -52,13 +50,11 @@ class TournamentsTest < ApplicationSystemTestCase
 
                         assert td.has_link? "Challonge bracket", href: href, exact: true
                     when 7
-                        assert td.has_link? "Change settings",
-                               href: edit_user_tournament_path(@user, tournament),
-                               exact: true
+                        assert td.has_link? "Change settings", exact: true,
+                               href: edit_user_tournament_path(@user, tournament)
                     when 8
-                        assert td.has_link? "Delete",
-                               href: user_tournament_path(@user, tournament),
-                               exact: true
+                        assert td.has_link? "Delete", exact: true,
+                               href: user_tournament_path(@user, tournament)
                 end
             end
         end
