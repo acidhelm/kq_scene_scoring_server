@@ -6,21 +6,20 @@ class KioskTest < ApplicationSystemTestCase
 
         visit tournament_kiosk_url(tournament.slug)
 
-        assert_selector "th", exact_text: "Rank"
-        assert_selector "th", exact_text: "Scene"
-        assert_selector "th", exact_text: "Score"
+        within "table" do
+            within "thead" do
+                [ "Rank", "Scene", "Score" ].each do |text|
+                    assert_selector "th", exact_text: text
+                end
+            end
 
-        page.all("tbody tr").each.with_index(1) do |tr, row|
-            scene_score = scene_scores("live_data_kq25_#{row}")
-
-            tr.all("td").each_with_index do |td, i|
-                case i
-                    when 0
-                        assert_equal scene_score.rank.to_s, td.text
-                    when 1
-                        assert_equal scene_score.name, td.text
-                    when 2
-                        assert_equal scene_score.score.to_s, td.text
+            within "tbody" do
+                tournament.scene_scores.rank_order.each.with_index(1) do |score, i|
+                    within "tr:nth-child(#{i})" do
+                        assert_selector "td:first-child", exact_text: score.rank.to_s
+                        assert_selector "td:nth-child(2)", exact_text: score.name
+                        assert_selector "td:nth-child(3)", exact_text: score.score.to_s
+                    end
                 end
             end
         end
