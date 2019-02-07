@@ -8,6 +8,15 @@ class UsersTest < ApplicationSystemTestCase
 
         visit edit_user_url(@user)
 
+        assert_selector "h1", exact_text: "Change account settings for #{@user.user_name}"
+        assert_selector "label", text: "Challonge API key:"
+        assert_link "Find your API key", exact: true,
+                    href: "https://challonge.com/settings/developer"
+        assert_field id: "user_api_key", type: "text", with: @user.api_key
+        assert_selector "label", text: "Password:"
+        assert_field id: "user_password", type: "password"
+        assert_selector "label", exact_text: "Confirm the new password:"
+        assert_field id: "user_password_confirmation", type: "password"
         assert_button "Update User", exact: true
         assert_link "Cancel", href: "javascript:history.back()", exact: true
 
