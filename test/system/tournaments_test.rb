@@ -6,21 +6,18 @@ class TournamentsTest < ApplicationSystemTestCase
     test "Check the tournament list" do
         assert_selector "h1", text: "Tournament list for #{@user.user_name}"
 
-        # The footer should have three links.
-        assert_link "Calculate scores for a new tournament",
-                    href: new_user_tournament_path(@user), exact: true
-        assert_link "View this user's info", href: user_path(@user), exact: true
-        assert_link "Log out", href: logout_path, exact: true
-
         # Check the column headers in the tournament table.
-        header_text = %w(Title Challonge\ ID Subdomain Complete? Links Actions)
+        within "table thead" do
+            headers = [ "Title", "Challonge ID", "Subdomain", "Complete?",
+                        "Links", "Actions" ]
 
-        page.all("th").each_with_index do |th, i|
-            assert th.text == header_text[i]
+            headers.each.with_index(1) do |text, i|
+                assert_selector "th:nth-child(#{i})", exact_text: text
+            end
         end
 
         # Check the list of tournaments.
-        page.all("tbody tr").each do |tr|
+        page.all("table tbody tr").each do |tr|
             tournament = Tournament.find(tr[:id].slice(/\d+\z/))
 
             tr.all("td").each_with_index do |td, i|
@@ -58,6 +55,12 @@ class TournamentsTest < ApplicationSystemTestCase
                 end
             end
         end
+
+        # The footer should have three links.
+        assert_link "Calculate scores for a new tournament",
+                    href: new_user_tournament_path(@user), exact: true
+        assert_link "View this user's info", href: user_path(@user), exact: true
+        assert_link "Log out", href: logout_path, exact: true
     end
 
     test "Check the show-tournament page" do
@@ -104,11 +107,11 @@ class TournamentsTest < ApplicationSystemTestCase
 
         assert_selector "h1", exact_text: "Calculate scores for a Challonge tournament"
         assert_selector "label", exact_text: "Title:"
-        assert_field "tournament_title"
+        assert_field "tournament_title", type: "text"
         assert_selector "label", text: "Challonge ID:"
-        assert_field "tournament_slug"
+        assert_field "tournament_slug", type: "text"
         assert_selector "label", text: "Subdomain:"
-        assert_field "tournament_subdomain"
+        assert_field "tournament_subdomain", type: "text"
 
         assert_button "Create Tournament", exact: true
         assert_link "Back to the tournament list", href: user_tournaments_path(@user),
@@ -122,11 +125,11 @@ class TournamentsTest < ApplicationSystemTestCase
 
         assert_selector "h1", exact_text: "Settings for #{tournament.title}"
         assert_selector "label", exact_text: "Title:"
-        assert_field "tournament_title", with: tournament.title, exact: true
+        assert_field "tournament_title", type: "text", with: tournament.title, exact: true
         assert_selector "label", text: "Challonge ID:"
-        assert_field "tournament_slug", with: tournament.slug, exact: true
+        assert_field "tournament_slug", type: "text", with: tournament.slug, exact: true
         assert_selector "label", text: "Subdomain:"
-        assert_field "tournament_subdomain", with: tournament.subdomain, exact: true
+        assert_field "tournament_subdomain", type: "text", with: tournament.subdomain, exact: true
 
         if tournament.complete
             assert_checked_field "tournament_complete"
