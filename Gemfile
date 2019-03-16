@@ -62,4 +62,5 @@ group :test do
 end
 
 gem "attr_encrypted"
+gem "killer_queen_scene_scoring"
 gem "rest-client"

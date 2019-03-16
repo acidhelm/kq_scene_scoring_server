@@ -28,7 +28,8 @@ they are marked as underway on Challonge.
 
 Each bracket must contain a config file that holds the list of teams, their players,
 and the scene that each player represents.  The instructions for making this
-file are in [the kq_olympic_scoring_test project](https://github.com/acidhelm/kq_olympic_scoring_test/blob/master/README.md#the-config-file).
+file are in [the killer_queen_scene_scoring gem](https://github.com/acidhelm/killer_queen_scene_scoring/blob/master/README.md#the-config-file).
+
 Attach the config file to the first match in each bracket.
 
 # Calculate scores for a tournament
