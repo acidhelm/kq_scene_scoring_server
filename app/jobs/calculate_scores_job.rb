@@ -16,7 +16,8 @@ class CalculateScoresJob < ApplicationJob
         scoring_tournament = TournamentsHelper.calc_scores(
                                  slug: tournament.slug,
                                  subdomain: tournament.subdomain,
-                                 api_key: tournament.user.api_key)
+                                 api_key: tournament.user.api_key,
+                                 logger: Rails.logger)
 
         if scoring_tournament.scene_scores.blank?
             Rails.logger.error "No brackets could be loaded."
