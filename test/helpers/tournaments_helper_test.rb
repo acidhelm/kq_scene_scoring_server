@@ -9,7 +9,8 @@ class TournamentsHelperTest < ActionView::TestCase
         VCR.use_cassette("calc_scores_test_#{tournament.slug}") do
             scoring_tournament = TournamentsHelper.calc_scores(
                                      slug: tournament.slug, subdomain: nil,
-                                     api_key: tournament.user.api_key)
+                                     api_key: tournament.user.api_key,
+                                     logger: Rails.logger)
         end
 
         assert_equal scoring_tournament.scene_scores.size, tournament.scene_scores.size
