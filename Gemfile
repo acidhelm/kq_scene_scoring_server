@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.6.0"
+ruby "~> 2.6.0"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -41,7 +41,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
   gem "dotenv-rails"
-  gem "rails-controller-testing"
   gem 'selenium-webdriver'
 end
 
@@ -56,6 +55,7 @@ end
 
 group :test do
   gem "coveralls", require: false
+  gem "rails-controller-testing"
   gem "simplecov", require: false
   gem "vcr"
   gem "webmock"
