@@ -38,10 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara'
   gem "dotenv-rails"
-  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -54,8 +51,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem "coveralls", require: false
   gem "rails-controller-testing"
+  gem 'selenium-webdriver'
   gem "simplecov", require: false
   gem "vcr"
   gem "webmock"
